@@ -1,0 +1,52 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100" id="myModalLabel">Edit student: {{editableRow.name}}</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="md-form">
+        <input id="id" type="text" class="form-control grey-text" formControlName="id" mdbInput>
+        <label for="id">ID</label>
+      </div>
+      <div class="md-form">
+        <input id="name" type="text" class="form-control" formControlName="name" mdbInput mdbValidate
+          [validateSuccess]="false">
+        <label for="name">Name</label>
+        <mdb-error *ngIf="name.errors?.required && (name.dirty || name.touched)">Input is required</mdb-error>
+        <mdb-error *ngIf="name.errors?.pattern && (name.dirty || name.touched)">Name is invalid</mdb-error>
+      </div>
+      <div class="md-form">
+        <input id="age" type="text" class="form-control" formControlName="age" mdbInput mdbValidate
+          [validateSuccess]="false">
+        <label for="age">Age</label>
+        <mdb-error *ngIf="age.errors?.required && (age.dirty || age.touched)">Input is required</mdb-error>
+        <mdb-error *ngIf="age.errors?.pattern && (age.dirty || age.touched)">Age is invalid, should be between 5-29</mdb-error>
+      </div>
+      <div class="md-form">
+        <input id="email" type="text" class="form-control" formControlName="email" mdbInput mdbValidate
+          [validateSuccess]="false">
+        <label for="email">Email</label>
+        <mdb-error *ngIf="email.errors?.required && (email.dirty || email.touched)">Input is required</mdb-error>
+        <mdb-error *ngIf="email.errors?.pattern && (email.dirty || email.touched)">Email address is invalid</mdb-error>
+      </div>
+      <!-- <div class="md-form">
+        <input id="mark" type="text" class="form-control" formControlName="age" mdbInput mdbValidate
+          [validateSuccess]="false">
+        <label for="age">Age</label>
+        <mdb-error *ngIf="age.errors?.required && (age.dirty || age.touched)">Input is required</mdb-error>
+        <mdb-error *ngIf="age.errors?.pattern && (age.dirty || age.touched)">Age is invalid, should be between 5-29</mdb-error>
+      </div> -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modalRef.hide()"
+      mdbWavesEffect>Cancel
+    </button>
+    <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect [disabled]="form.invalid"
+      (click)="editRow()">Save!
+    </button>
+  </div>
+</div>

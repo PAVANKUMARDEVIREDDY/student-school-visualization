@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
+      <thead class="sticky-top">
+        <tr>
+          <th *ngFor="let head of headElements; let i = index" scope="col">
+            {{head | titlecase}}
+          </th>
+        </tr>
+      </thead>
+      <tbody #row>
+        <tr *ngFor="let el of data; let i = index">
+          <th scope="row">
+            {{el.name}}
+          </th>
+          <td>
+            {{el.age}}
+          </td>
+          <td>
+            {{el.email}}
+          </td>
+          <td *ngFor="let mark of el.marks | keyvalue;">
+            {{mark.value}}
+          </td>
+          <td>
+            <button mdbBtn color="warning" size="sm" mdbWavesEffect (click)="editRow(el)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
